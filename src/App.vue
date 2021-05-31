@@ -1,12 +1,38 @@
 <template>
   <div id="app">
-    <div id="nav">
+       <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
     </div>
     <router-view/>
+    <Header
+     @load-markers="loadMarkers"
+     title="Pusky's Challange"/>
+    <Footer />
   </div>
 </template>
+
+<script>
+import Header from './components/Header'
+import Footer from './components/Footer'
+
+export default {
+  name: 'App',
+  components: {
+    Header,
+    Footer
+  },
+  data () {
+    return {
+      test: false
+    }
+  },
+  methods: {
+    loadMarkers () {
+      console.log('Test')
+    }
+  }
+}
+</script>
 
 <style>
 #app {
@@ -28,5 +54,32 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.btn {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 15px;
+  font-family: inherit;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
 }
 </style>
