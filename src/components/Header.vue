@@ -7,6 +7,16 @@
       text= "Load data"
       color= "Green"
     />
+
+    <Button
+      v-show="homePage"
+    @btn-click="$emit('show-markers')"
+      text= "Show data"
+      color= "Green"
+    />
+    <div>
+    <b-table striped hover :items="this.markers"></b-table>
+    </div>
   </header>
 </template>
 
@@ -20,6 +30,12 @@ export default {
   },
   components: {
     Button
+  },
+  data () {
+    return {
+      markers: [],
+      test: false
+    }
   },
   computed: {
     homePage () {

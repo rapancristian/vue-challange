@@ -6,6 +6,7 @@
     <router-view/>
     <Header
      @load-markers="loadMarkers"
+     @show-markers="showMarkers"
      title="Pusky's Challange"/>
     <Footer />
   </div>
@@ -23,12 +24,18 @@ export default {
   },
   data () {
     return {
+      markers: [],
       test: false
     }
   },
   methods: {
     loadMarkers () {
-      console.log('Test')
+      fetch('response.json')
+        .then(response => response.json())
+        .then(data => (this.markers = data))
+    },
+    showMarkers () {
+      console.log(this.markers)
     }
   }
 }
