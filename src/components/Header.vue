@@ -17,18 +17,20 @@
     <div>
     <b-table striped hover :items="this.markers"></b-table>
     </div>
+    <div><Map /></div>
   </header>
 </template>
 
 <script>
 import Button from './Button'
-
+import Map from './Map'
 export default {
   name: 'Header',
   props: {
     title: String
   },
   components: {
+    Map,
     Button
   },
   data () {
