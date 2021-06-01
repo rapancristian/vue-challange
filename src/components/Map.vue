@@ -17,36 +17,38 @@
 
      <l-marker v-for="item in markers" :key="item.id" :lat-lng="item.latlng" @add="onAdd($event)">
     </l-marker>
+    <l-geo-json :geojson="geojson"></l-geo-json>
     </l-map>
   </div>
 </template>
 
 <script>
 import { latLng } from 'leaflet'
-import { LMap, LTileLayer, LMarker } from 'vue2-leaflet'
+import { LMap, LTileLayer, LMarker, LGeoJson } from 'vue2-leaflet'
 
 export default {
-  name: 'Example',
+  name: 'Map',
   components: {
     LMap,
     LTileLayer,
-    LMarker
+    LMarker,
+    LGeoJson
   },
   data () {
     return {
-      zoom: 13,
-      center: latLng(47.41322, -1.219482),
+      zoom: 3,
+      center: latLng(25.97363, 27.29368),
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       attribution:
         '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      withTest: latLng(47.41422, -1.250482),
       currentZoom: 11.5,
-      currentCenter: latLng(47.41322, -1.219482),
+      currentCenter: latLng(25.97363, 27.29368),
       showParagraph: false,
       mapOptions: {
-        zoomSnap: 0.5
+        zoomSnap: 1
       },
-      markers: []
+      markers: [],
+      geojson: null
     }
   },
   mounted () {
@@ -75,6 +77,10 @@ export default {
     innerClick () {
       alert('Click!')
     }
+  },
+  async created () {
+    const response = await fetch('response.json')
+    this.geojson = await response.json()
   }
 }
 </script>
