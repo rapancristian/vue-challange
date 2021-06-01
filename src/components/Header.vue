@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     testButton () {
-      console.log(this.geojson)
+      console.log(this.geojson.features[0].properties)
     },
     loadGeoJsonParent (value) {
       this.geojson = value

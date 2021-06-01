@@ -17,7 +17,7 @@
 
      <l-marker v-for="item in markers" :key="item.id" :lat-lng="item.latlng" @add="onAdd($event)">
     </l-marker>
-    <l-geo-json :geojson="geojson"></l-geo-json>
+    <l-geo-json :geojson="geojson" v-if="geojson != null" ></l-geo-json>
     </l-map>
   </div>
 </template>
