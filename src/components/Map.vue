@@ -28,6 +28,9 @@ import { LMap, LTileLayer, LMarker, LGeoJson } from 'vue2-leaflet'
 
 export default {
   name: 'Map',
+  props: {
+    geojson: Object
+  },
   components: {
     LMap,
     LTileLayer,
@@ -47,8 +50,7 @@ export default {
       mapOptions: {
         zoomSnap: 1
       },
-      markers: [],
-      geojson: null
+      markers: []
     }
   },
   mounted () {
@@ -77,10 +79,12 @@ export default {
     innerClick () {
       alert('Click!')
     }
-  },
+  }
+  /*
   async created () {
     const response = await fetch('response.json')
     this.geojson = await response.json()
   }
+  */
 }
 </script>

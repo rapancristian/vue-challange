@@ -1,29 +1,24 @@
 <template>
   <header>
     <h1>{{ title }}</h1>
-  <Button
-      v-show="homePage"
-      @btn-click="$emit('load-markers')"
-      text= "Load data"
-      color= "Green"
-    />
-
-    <Button
-      v-show="homePage"
-    @btn-click="$emit('show-markers')"
-      text= "Show data"
-      color= "Green"
-    />
     <div>
-    <b-table striped hover :items="this.markers"></b-table>
+      <Button
+      @btn-click="testButton"
+      text= "Test Button"
+      color= "Red"
+    />
     </div>
-    <div><Map /></div>
+    <div> <Table @load-geo-json-parent="loadGeoJsonParent" /></div>
+    <div> <Map :geojson="this.geojson" /> </div>
+
   </header>
 </template>
 
 <script>
 import Button from './Button'
+import Table from './Table'
 import Map from './Map'
+
 export default {
   name: 'Header',
   props: {
@@ -31,12 +26,21 @@ export default {
   },
   components: {
     Map,
+    Table,
     Button
   },
   data () {
     return {
-      markers: [],
+      geojson: null,
       test: false
+    }
+  },
+  methods: {
+    testButton () {
+      console.log(this.geojson)
+    },
+    loadGeoJsonParent (value) {
+      this.geojson = value
     }
   },
   computed: {
