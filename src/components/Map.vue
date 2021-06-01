@@ -1,12 +1,12 @@
-<template>
-<div style="height: 500px; width: 50%">
-    <div style="height: 200px; overflow: false;">
+ <template>
+ <div style="height: 500px; width: 100%">
+    <div style="height: 200px; overflow: auto;">
     </div>
     <l-map
       :zoom="zoom"
       :center="center"
       :options="mapOptions"
-      style="height: 100%"
+      style="height: 80%"
       @update:center="centerUpdate"
       @update:zoom="zoomUpdate"
     >
@@ -14,19 +14,23 @@
         :url="url"
         :attribution="attribution"
       />
+
+     <l-marker v-for="item in markers" :key="item.id" :lat-lng="item.latlng" @add="onAdd($event)">
+    </l-marker>
     </l-map>
   </div>
 </template>
 
 <script>
 import { latLng } from 'leaflet'
-import { LMap, LTileLayer } from 'vue2-leaflet'
+import { LMap, LTileLayer, LMarker } from 'vue2-leaflet'
 
 export default {
   name: 'Example',
   components: {
     LMap,
-    LTileLayer
+    LTileLayer,
+    LMarker
   },
   data () {
     return {
@@ -35,17 +39,30 @@ export default {
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       attribution:
         '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      withPopup: latLng(47.41322, -1.219482),
-      withTooltip: latLng(47.41422, -1.250482),
+      withTest: latLng(47.41422, -1.250482),
       currentZoom: 11.5,
       currentCenter: latLng(47.41322, -1.219482),
       showParagraph: false,
       mapOptions: {
         zoomSnap: 0.5
-      }
+      },
+      markers: []
     }
   },
+  mounted () {
+    window.setTimeout(this.addMarker, 2000)
+  },
   methods: {
+    addMarker () {
+      this.markers.push({
+        id: 1,
+        latlng: latLng(47.413220, -1.219483),
+        content: 'Hi! this is my popup data'
+      })
+    },
+    onAdd: function (e) {
+      this.$nextTick(() => e.target.openPopup())
+    },
     zoomUpdate (zoom) {
       this.currentZoom = zoom
     },
