@@ -5,13 +5,6 @@
       text= "Load data"
       color= "Green"
     /></h3>
-<h3>
-  <Button
-      @btn-click="testRows"
-      text= "Test Rows"
-      color= "Blue"
-    />
-</h3>
     <md-table v-model="tableData" md-card>
       <md-table-toolbar>
         <h1 class="md-title">Data</h1>
@@ -54,8 +47,7 @@ export default {
         Quality: null,
         Parcel: null
       }],
-      jsonResponse: null,
-      test: false
+      jsonResponse: null
     }
   },
   methods: {
@@ -68,10 +60,9 @@ export default {
     },
     emitGeoJson () {
       this.loadGeoJson()
-      // this.$emit('load-geo-json-parent', this.jsonResponse)
+      this.loadRows()
     },
-    testRows () {
-      console.log('Ha')
+    loadRows () {
       var row = []
       for (var i = 0; i < this.jsonResponse.features.length; i++) {
         var currentItem = {
@@ -86,56 +77,7 @@ export default {
         }
         row.push(currentItem)
       }
-      console.log(row)
       this.tableData = row
-      console.log(this.tableData)
-    }
-    /*
-    testRows () {
-      console.log('Hei')
-      var row = []
-      for (var i = 0; i < this.jsonResponse.features.length; i++) {
-        console.log('Hei2 real')
-        row.push(this.jsonResponse.features[i].geometry.coordinates[0])
-        row.push(this.jsonResponse.features[i].geometry.coordinates[1])
-        row.push(this.jsonResponse.features[i].properties.Id)
-        console.log(this.jsonResponse.features[i].properties.Id)
-        row.push(this.jsonResponse.features[i].properties.AnnualAllowableCut)
-        console.log(this.jsonResponse.features[i].properties.AnnualAllowableCut)
-        row.push(this.jsonResponse.features[i].properties.Species)
-        console.log(this.jsonResponse.features[i].properties.Species)
-        row.push(this.jsonResponse.features[i].properties.DiameterBreastHeight)
-        console.log(this.jsonResponse.features[i].properties.DiameterBreastHeight)
-        row.push(this.jsonResponse.features[i].properties.Quality)
-        console.log(this.jsonResponse.features[i].properties.Quality)
-        row.push(this.jsonResponse.features[i].properties.Parcel)
-        console.log(this.jsonResponse.features[i].properties.Parcel)
-      }
-      console.log('Hei4 real')
-      console.log(this.jsonResponse)
-      console.log(row)
-      return row
-    }
-    */
-  },
-  computed: {
-    tableRows: function () {
-      var tableRows = []
-      for (var i = 0; i < this.jsonResponse.features.length; i++) {
-        var currentItem = {
-          X: this.jsonResponse.features[i].geometry.coordinates[0],
-          Y: this.jsonResponse.features[i].geometry.coordinates[1],
-          Id: this.jsonResponse.features[i].properties.Id,
-          AnnualAllowableCut: this.jsonResponse.features[i].properties.AnnualAllowableCut,
-          Species: this.jsonResponse.features[i].properties.Species,
-          DiameterBreastHeight: this.jsonResponse.features[i].properties.DiameterBreastHeight,
-          Quality: this.jsonResponse.features[i].properties.Quality,
-          Parcel: this.jsonResponse.features[i].properties.Parcel
-        }
-        tableRows.push(currentItem)
-      }
-      console.log(tableRows)
-      return tableRows
     }
   }
 }

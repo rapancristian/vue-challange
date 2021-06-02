@@ -1,41 +1,20 @@
 <template>
   <div id="app">
-       <div id="nav">
-      <router-link to="/">Home</router-link> |
+    <div id="nav">
+      <router-link to="/">Home</router-link>
     </div>
     <router-view/>
-    <Header
-     title="Pusky's Challange"/>
     <Footer />
   </div>
 </template>
 
 <script>
-import Header from './components/Header'
 import Footer from './components/Footer'
 
 export default {
   name: 'App',
   components: {
-    Header,
     Footer
-  },
-  data () {
-    return {
-      test: false
-    }
-  },
-  methods: {
-    /*
-    loadMarkers () {
-      fetch('response.json')
-        .then(response => response.json())
-        .then(data => (this.markers = data))
-    },
-    showMarkers () {
-      console.log(this.markers)
-    }
-    */
   }
 }
 </script>

@@ -1,44 +1,31 @@
 <template>
   <header>
     <h1>{{ title }}</h1>
-    <div>
-      <Button
-      @btn-click="testButton"
-      text= "Test Button"
-      color= "Red"
-    />
-    </div>
-    <div> <Table @load-geo-json-parent="loadGeoJsonParent" /></div>
+    <div> <Table @load-geo-json-parent="loadGeoJson" /></div>
     <div> <Map :geojson="this.geojson" /> </div>
   </header>
 </template>
 
 <script>
-import Button from './Button'
 import Table from './Table'
 import Map from './Map'
 
 export default {
-  name: 'Header',
+  name: 'Challange',
   props: {
     title: String
   },
   components: {
     Map,
-    Table,
-    Button
+    Table
   },
   data () {
     return {
-      geojson: null,
-      test: false
+      geojson: null
     }
   },
   methods: {
-    testButton () {
-      console.log(this.geojson.features[0].properties)
-    },
-    loadGeoJsonParent (value) {
+    loadGeoJson (value) {
       this.geojson = value
     }
   },
