@@ -10,7 +10,6 @@
     </div>
     <div> <Table @load-geo-json-parent="loadGeoJsonParent" /></div>
     <div> <Map :geojson="this.geojson" /> </div>
-
   </header>
 </template>
 

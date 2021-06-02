@@ -7,11 +7,13 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'leaflet/dist/leaflet.css'
 
-import { MdTable } from 'vue-material/dist/components'
+import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
+import ZkTable from 'vue-table-with-tree-grid'
 
-Vue.use(MdTable)
+Vue.use(VueMaterial)
+Vue.use(ZkTable)
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
