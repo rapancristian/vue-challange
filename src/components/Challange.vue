@@ -1,8 +1,8 @@
 <template>
   <header>
-    <h1>{{ title }}</h1>
-    <div> <Table @load-geo-json-parent="loadGeoJson" /></div>
+    <h1 class="txt-center text-info">{{ title }}</h1>
     <div> <Map :geojson="this.geojson" /> </div>
+    <div> <Table @load-geo-json-parent="loadGeoJson" /></div>
   </header>
 </template>
 
@@ -27,15 +27,6 @@ export default {
   methods: {
     loadGeoJson (value) {
       this.geojson = value
-    }
-  },
-  computed: {
-    homePage () {
-      if (this.$route.path === '/') {
-        return true
-      } else {
-        return false
-      }
     }
   }
 }

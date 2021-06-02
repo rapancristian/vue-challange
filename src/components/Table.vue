@@ -54,8 +54,6 @@ export default {
     async loadGeoJson () {
       const response = await fetch('response.json')
       this.jsonResponse = await response.json()
-      console.log(this.jsonResponse)
-
       this.$emit('load-geo-json-parent', this.jsonResponse)
     },
     emitGeoJson () {
