@@ -5,7 +5,7 @@
       text= "Load data"
       color= "Green"
     /></h3>
-    <md-table v-model="tableData" md-card>
+    <md-table v-model="tableData" md-sort="name" md-sort-order="asc" md-card>
       <md-table-toolbar>
         <h1 class="md-title">Data</h1>
       </md-table-toolbar>
@@ -59,8 +59,7 @@ export default {
       this.$emit('load-geo-json-parent', this.jsonResponse)
     },
     emitGeoJson () {
-      this.loadGeoJson()
-      this.loadRows()
+      this.loadGeoJson().then(this.loadRows)
     },
     loadRows () {
       var row = []
